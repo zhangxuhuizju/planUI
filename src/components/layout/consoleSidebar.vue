@@ -74,21 +74,145 @@
       text-color="#fff"
       active-text-color="#ffd04b"
       class="sidebar-content">
-      <div class="sidebar-fold">版本1.0.0</div>
+      <div class="sidebar-fold">计划服务-系列规划</div>
+      
       <el-menu-item index="/quick">
         <i class="el-icon-message"></i>
         快速入门
       </el-menu-item>
-      <el-submenu index="material">
+
+      <el-submenu index="/series/index">
         <template slot="title">
           <i class="el-icon-message"></i>
-          基本信息
+          系列管理
         </template>
-        <el-menu-item index="/dictionary/productMana"><i class="el-icon-document"></i>产品管理</el-menu-item>
-        <el-menu-item index="/dictionary/customerMana"><i class="el-icon-document"></i>客户管理</el-menu-item>
-        <el-menu-item index="/dictionary/brandMana"><i class="el-icon-document"></i>品牌管理</el-menu-item>
-        <el-menu-item index="/dictionary/dictionaryCateMana"><i class="el-icon-document"></i>数据字典管理</el-menu-item>
+        <el-menu-item index="/series/addSeries"><i class="el-icon-document"></i>添加系列</el-menu-item>
+        <el-menu-item index="/series/importSeries"><i class="el-icon-document"></i>导入系列</el-menu-item>
       </el-submenu>
+
+      <el-submenu index="/styleGroup/index">
+        <template slot="title">
+          <i class="el-icon-message"></i>
+          款式组管理
+        </template>
+        <el-menu-item index="/styleGroup/addStyleGroup"><i class="el-icon-document"></i>添加款式组</el-menu-item>
+      </el-submenu>
+
+      <el-submenu index="/style/index">
+        <template slot="title">
+          <i class="el-icon-message"></i>
+          款式管理
+        </template>
+        <el-menu-item index="/style/addStyle"><i class="el-icon-document"></i>添加款式信息</el-menu-item>
+        <el-menu-item index="/style/importStyle"><i class="el-icon-document"></i>导入款式</el-menu-item>
+        <el-menu-item index="/style/bindStyleGroup"><i class="el-icon-document"></i>绑定款式组</el-menu-item>
+      </el-submenu>
+
+      <el-menu-item index="/customerPredictPlan">
+        <i class="el-icon-message"></i>
+        客户预测计划
+      </el-menu-item>
+
+      <el-menu-item index="/planManagement">
+        <i class="el-icon-message"></i>
+        计划管理
+      </el-menu-item>
+
+      <el-menu-item index="/planCompletionManage">
+        <i class="el-icon-message"></i>
+        计划完成管理
+      </el-menu-item>
+
+      <el-submenu index="/planMake/planMakeIndex">
+        <template slot="title">
+          <i class="el-icon-message"></i>
+          计划制定
+        </template>
+        <el-menu-item index="/planMake/seriesPlanMake"><i class="el-icon-document"></i>系列计划制定</el-menu-item>
+        <el-menu-item index="/planMake/styleGroupPlanMake"><i class="el-icon-document"></i>款数组计划制定</el-menu-item>
+        <el-menu-item index="/planMake/stylePlanMake"><i class="el-icon-document"></i>款式计划制定</el-menu-item>
+      </el-submenu>
+
+      <el-menu-item index="/planVerify">
+        <i class="el-icon-message"></i>
+        计划审核管理
+      </el-menu-item>
+
+      <el-menu-item index="/planDistribute">
+        <i class="el-icon-message"></i>
+        计划下发管理
+      </el-menu-item>
+
+      <el-menu-item index="/planRecover">
+        <i class="el-icon-message"></i>
+        计划回收站
+      </el-menu-item>
+
+      <el-menu-item index="/messageManagement">
+        <i class="el-icon-message"></i>
+        消息管理
+      </el-menu-item>
+
+      <el-menu-item index="/exceptionManagement">
+        <i class="el-icon-message"></i>
+        异常管理
+      </el-menu-item>
+
+      <el-menu-item index="/queryStatistic">
+        <i class="el-icon-message"></i>
+        查询统计
+      </el-menu-item>
+
+      <el-menu-item index="/formManagement">
+        <i class="el-icon-message"></i>
+        报表管理
+      </el-menu-item>
+
+      <el-submenu index="dictionary">
+        <template slot="title">
+          <i class="el-icon-message"></i>
+          后管理模块
+        </template>
+        <el-menu-item index="/backEndModule/planModelManagement"><i class="el-icon-document"></i>计划模板管理</el-menu-item>
+        <el-menu-item index="/backEndModule/planModelEdit"><i class="el-icon-document"></i>计划模板编辑</el-menu-item>
+
+        <el-submenu index="dictionary">
+          <template slot="title">
+            <i class="el-icon-message"></i>
+            字典管理
+          </template>
+          <el-menu-item index="/backEndModule/dictionary/productMana"><i class="el-icon-document"></i>产品管理</el-menu-item>
+          <el-menu-item index="/backEndModule/dictionary/customerMana"><i class="el-icon-document"></i>客户管理</el-menu-item>
+          <el-menu-item index="/backEndModule/dictionary/brandMana"><i class="el-icon-document"></i>品牌管理</el-menu-item>
+          <el-menu-item index="/backEndModule/dictionary/dictionaryCateMana"><i class="el-icon-document"></i>数据字典管理</el-menu-item>
+        </el-submenu>
+
+        <el-submenu index="dictionary">
+          <template slot="title">
+            <i class="el-icon-message"></i>
+            用户数据管理
+          </template>
+          <el-menu-item index="/backEndModule/userManagement"><i class="el-icon-document"></i>用户管理</el-menu-item>
+          <el-menu-item index="/backEndModule/groupManagement"><i class="el-icon-document"></i>部门管理</el-menu-item>
+          <el-menu-item index="/backEndModule/privilegeManagement"><i class="el-icon-document"></i>角色管理</el-menu-item>
+        </el-submenu>
+
+        <el-menu-item index="/quick">
+          <i class="el-icon-message"></i>
+          权限管理
+        </el-menu-item>
+
+        <el-submenu index="/quick">
+          <template slot="title">
+            <i class="el-icon-message"></i>
+            系统配置
+          </template>
+          <el-menu-item index="/quick"><i class="el-icon-document"></i>系统配置项</el-menu-item>
+          <el-menu-item index="/quick"><i class="el-icon-document"></i>API管理</el-menu-item>
+        </el-submenu>
+      </el-submenu>
+      
+
     </el-menu>
   </div>
 </template>

@@ -10,8 +10,8 @@
               <el-button type="danger">删除信息</el-button>
               <div class="containerHeaderDiv2">
                 <el-button type="primary">搜索产品</el-button>
-                <el-input v-model="searchInput" class="input" placeholder="请输入产品编号"></el-input>
-                <span class="inputTag">产品编号:</span>
+                <el-input v-model="searchInput" class="input" placeholder="请输入产品名称"></el-input>
+                <span class="inputTag">产品名称:</span>
               </div>
             </div>
             <hr />
@@ -30,12 +30,12 @@
             </el-table-column>
             <el-table-column
               label="产品编号"
-              width="240"
-              prop="name">
+              width="120"
+              prop="code">
               <!-- <template slot-scope="scope">{{ scope.row.date }}</template> -->
             </el-table-column>
             <el-table-column
-              prop="abbr"
+              prop="name"
               label="产品名称"
               width="120">
             </el-table-column>
@@ -45,7 +45,7 @@
               show-overflow-tooltip>
             </el-table-column>
             <el-table-column
-              prop="owner"
+              prop="ownerDepart"
               label="产品部门"
               show-overflow-tooltip>
             </el-table-column>
@@ -57,19 +57,19 @@
         </el-container>
       </el-tab-pane>
 
-      <el-tab-pane label="新增产品信息" name="second">
+      <el-tab-pane label="新增产品信息" name="second" v-if="newCardShowFlag">
         <el-card>
           <div class="inputCombine">
             <span class="inputTag">产品编号:</span>
-            <el-input v-model="newInfoName" class="input" placeholder="请输入产品编号"></el-input>
+            <el-input v-model="addInfoCode" class="input" placeholder="请输入产品名称"></el-input>
           </div>
           <div class="inputCombine">
             <span class="inputTag">产品名称:</span>
-            <el-input v-model="newInfoAbbr" class="input" placeholder="请输入产品名称"></el-input>
+            <el-input v-model="addInfoName" class="input" placeholder="请输入产品简称"></el-input>
           </div>
           <div class="inputCombine">
             <span class="inputTag">产品部门:</span>
-              <el-select v-model="newInfoOwner" placeholder="请选择" class="inputSelector">
+              <el-select v-model="addInfoDepartOwner" placeholder="请选择" class="inputSelector">
                 <el-option
                   v-for="item in selectionData"
                   :key="item.value"
@@ -85,29 +85,29 @@
               type="textarea"
               :rows="4"
               placeholder="请输入产品描述"
-              v-model="newInfoDescription">
+              v-model="addInfoDescription">
             </el-input>
           </div>
           <div class="secondButtonDiv">
-            <el-button type="success" class="save">保存</el-button>
-            <el-button type="danger" class="cancel">取消</el-button>
+            <el-button type="success" class="save" @click="handleNewSaveClick()">保存</el-button>
+            <el-button type="danger" class="cancel" @click="handleNewCancelClick()">取消</el-button>
           </div>
         </el-card>
       </el-tab-pane>
 
-      <el-tab-pane label="编辑产品信息" name="third">
+      <el-tab-pane label="编辑产品信息" name="third" v-if="editCardShowFlag">
         <el-card>
           <div class="inputCombine">
             <span class="inputTag">产品编号:</span>
-            <el-input v-model="editInfoName" class="input" placeholder="请输入产品编号"></el-input>
+            <el-input v-model="editInfoCode" class="input" placeholder="请输入产品名称"></el-input>
           </div>
           <div class="inputCombine">
             <span class="inputTag">产品名称:</span>
-            <el-input v-model="editInfoAbbr" class="input" placeholder="请输入产品名称"></el-input>
+            <el-input v-model="editInfoName" class="input" placeholder="请输入产品简称"></el-input>
           </div>
           <div class="inputCombine">
             <span class="inputTag">产品部门:</span>
-            <el-select v-model="editInfoOwner" placeholder="请选择" class="inputSelector">
+            <el-select v-model="editInfoDepartOwner" placeholder="请选择" class="inputSelector">
               <el-option
                 v-for="item in selectionData"
                 :key="item.value"
@@ -127,8 +127,8 @@
             </el-input>
           </div>
           <div class="secondButtonDiv">
-            <el-button type="success" class="save">保存</el-button>
-            <el-button type="danger" class="cancel">取消</el-button>
+            <el-button type="success" @click="handleEditSaveClick()" class="save">保存</el-button>
+            <el-button type="danger" @click="handleEditCancelClick()" class="cancel">取消</el-button>
           </div>
         </el-card>
       </el-tab-pane>
@@ -194,50 +194,55 @@
       return {
         viewname: 'first',
         searchInput: '',
-        tableData: [{
-          name: '中国耐克公司',
-          abbr: 'nk',
-          description: '知名产品',
-          owner:'业务组1'
-        },{
-          name: '中国阿迪公司',
-          abbr: 'ad',
-          description: '次级产品',
-          owner:'业务组2'
-        },{
-          name: '中国新百伦公司',
-          abbr: 'nb',
-          description: '国际产品',
-          owner:'业务组3'
-        },{
-          name: '日本阿赛克斯公司',
-          abbr: 'asics',
-          description: '日本产品',
-          owner:'业务组4'
-        },],
-        selectionData: [{
-          value: '选项1',
-          label: '业务组1'
-        }, {
-          value: '选项2',
-          label: '业务组2'
-        }, {
-          value: '选项3',
-          label: '业务组3'
-        }, {
-          value: '选项4',
-          label: '业务组4'
-        },],
+        tableData: [
+          {
+            name: 'nike',
+            code: 'nk',
+            description: '知名产品',
+            ownerDepart:'部门1'
+          },{
+            name: 'addidas',
+            code: 'ad',
+            description: '次级产品',
+            ownerDepart:'部门2'
+          },{
+            name: 'newbalance',
+            code: 'nb',
+            description: '国际产品',
+            ownerDepart:'部门3'
+          },{
+            name: '阿赛克斯',
+            code: 'asics',
+            description: '日本产品',
+            ownerDepart:'部门4'
+          },],
+          selectionData: [{
+            value: '选项1',
+            label: '部门1'
+          }, {
+            value: '选项2',
+            label: '部门2'
+          }, {
+            value: '选项3',
+            label: '部门3'
+          }, {
+            value: '选项4',
+            label: '部门4'
+          },],
         multipleSelection: [],
+
         editInfoDescription:'',
         editInfoName:'',
-        editInfoAbbr:'',
-        editInfoOwner:'',
+        editInfoCode:'',
+        editInfoDepartOwner:'',
 
-        newInfoOwner:'',
-        newInfoDescription:'',
-        newInfoName:'',
-        newInfoAbbr:'',
+        addInfoDescription:'',
+        addInfoName:'',
+        addInfoCode:'',
+        addInfoDepartOwner:'',
+
+        newCardShowFlag:false,
+        editCardShowFlag: false,
       };
     },
     // computed:{
@@ -260,6 +265,7 @@
         this.multipleSelection = val;
       },
       handleNewInfoClick(){
+        this.newCardShowFlag = true;
         this.viewname = 'second';
         console.log(this.viewname);
       },
@@ -272,13 +278,34 @@
           alert("只能选择一个信息进行编辑!");
           return;
         }
+        this.editCardShowFlag = true;
         console.log(this.multipleSelection[0]);
         this.editInfoName = this.multipleSelection[0].name;
-        this.editInfoAbbr = this.multipleSelection[0].abbr;
-        this.editInfoOwner = this.multipleSelection[0].owner;
+        this.editInfoCode = this.multipleSelection[0].code;
+        this.editInfoDepartOwner = this.multipleSelection[0].ownerDepart;
         this.editInfoDescription = this.multipleSelection[0].description;
         this.viewname = 'third';
-      }
+      },
+      handleNewSaveClick(){
+        this.newCardShowFlag = false;
+        this.viewname = "first";
+        return;
+      },
+      handleNewCancelClick(){
+         this.newCardShowFlag = false;
+        this.viewname = "first";
+        return;
+      },
+      handleEditSaveClick(){
+        this.editCardShowFlag = false;
+        this.viewname = "first";
+        return;
+      },
+      handleEditCancelClick(){
+        this.editCardShowFlag = false;
+        this.viewname = "first";
+        return;
+      },
     }
   };
 </script>

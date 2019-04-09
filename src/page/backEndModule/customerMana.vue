@@ -30,7 +30,7 @@
             </el-table-column>
             <el-table-column
               label="客户名称"
-              width="240"
+              width="120"
               prop="name">
               <!-- <template slot-scope="scope">{{ scope.row.date }}</template> -->
             </el-table-column>
@@ -45,7 +45,7 @@
               show-overflow-tooltip>
             </el-table-column>
             <el-table-column
-              prop="owner"
+              prop="ownerGroup"
               label="所属业务组"
               show-overflow-tooltip>
             </el-table-column>
@@ -57,19 +57,19 @@
         </el-container>
       </el-tab-pane>
 
-      <el-tab-pane label="新增客户信息" name="second">
+      <el-tab-pane label="新增客户信息" name="second" v-if="newCardShowFlag">
         <el-card>
           <div class="inputCombine">
             <span class="inputTag">客户名称:</span>
-            <el-input v-model="newInfoName" class="input" placeholder="请输入客户名称"></el-input>
+            <el-input v-model="addInfoName" class="input" placeholder="请输入客户名称"></el-input>
           </div>
           <div class="inputCombine">
             <span class="inputTag">客户简称:</span>
-            <el-input v-model="newInfoAbbr" class="input" placeholder="请输入客户简称"></el-input>
+            <el-input v-model="addInfoAbbr" class="input" placeholder="请输入客户简称"></el-input>
           </div>
           <div class="inputCombine">
-            <span class="inputTag">所属业务组:</span>
-              <el-select v-model="newInfoOwner" placeholder="请选择" class="inputSelector">
+            <span class="inputTag">所属客户:</span>
+              <el-select v-model="addInfoOwnerGroup" placeholder="请选择" class="inputSelector">
                 <el-option
                   v-for="item in selectionData"
                   :key="item.value"
@@ -85,17 +85,17 @@
               type="textarea"
               :rows="4"
               placeholder="请输入客户描述"
-              v-model="newInfoDescription">
+              v-model="addInfoDescription">
             </el-input>
           </div>
           <div class="secondButtonDiv">
-            <el-button type="success" class="save">保存</el-button>
-            <el-button type="danger" class="cancel">取消</el-button>
+            <el-button type="success" class="save" @click="handleNewSaveClick()">保存</el-button>
+            <el-button type="danger" class="cancel" @click="handleNewCancelClick()">取消</el-button>
           </div>
         </el-card>
       </el-tab-pane>
 
-      <el-tab-pane label="编辑客户信息" name="third">
+      <el-tab-pane label="编辑客户信息" name="third" v-if="editCardShowFlag">
         <el-card>
           <div class="inputCombine">
             <span class="inputTag">客户名称:</span>
@@ -106,8 +106,8 @@
             <el-input v-model="editInfoAbbr" class="input" placeholder="请输入客户简称"></el-input>
           </div>
           <div class="inputCombine">
-            <span class="inputTag">所属业务组:</span>
-            <el-select v-model="editInfoOwner" placeholder="请选择" class="inputSelector">
+            <span class="inputTag">所属客户:</span>
+            <el-select v-model="editInfoOwnerGroup" placeholder="请选择" class="inputSelector">
               <el-option
                 v-for="item in selectionData"
                 :key="item.value"
@@ -127,8 +127,8 @@
             </el-input>
           </div>
           <div class="secondButtonDiv">
-            <el-button type="success" class="save">保存</el-button>
-            <el-button type="danger" class="cancel">取消</el-button>
+            <el-button type="success" @click="handleEditSaveClick()" class="save">保存</el-button>
+            <el-button type="danger" @click="handleEditCancelClick()" class="cancel">取消</el-button>
           </div>
         </el-card>
       </el-tab-pane>
@@ -194,50 +194,56 @@
       return {
         viewname: 'first',
         searchInput: '',
-        tableData: [{
-          name: '中国耐克公司',
-          abbr: 'nk',
-          description: '知名客户',
-          owner:'业务组1'
-        },{
-          name: '中国阿迪公司',
-          abbr: 'ad',
-          description: '次级客户',
-          owner:'业务组2'
-        },{
-          name: '中国新百伦公司',
-          abbr: 'nb',
-          description: '国际客户',
-          owner:'业务组3'
-        },{
-          name: '日本阿赛克斯公司',
-          abbr: 'asics',
-          description: '日本客户',
-          owner:'业务组4'
-        },],
-        selectionData: [{
-          value: '选项1',
-          label: '业务组1'
-        }, {
-          value: '选项2',
-          label: '业务组2'
-        }, {
-          value: '选项3',
-          label: '业务组3'
-        }, {
-          value: '选项4',
-          label: '业务组4'
-        },],
+        tableData: [
+          {
+            name: 'nike',
+            abbr: 'nk',
+            description: '知名客户',
+            ownerGroup:'业务组1'
+          },{
+            name: 'addidas',
+            abbr: 'ad',
+            description: '次级客户',
+            ownerGroup:'业务组2'
+          },{
+            name: 'newbalance',
+            abbr: 'nb',
+            description: '国际客户',
+            ownerGroup:'业务组3'
+          },{
+            name: '阿赛克斯',
+            abbr: 'asics',
+            description: '日本客户',
+            ownerGroup:'业务组4'
+          },],
+          selectionData: [{
+            value: '选项1',
+            label: '业务组1'
+          }, {
+            value: '选项2',
+            label: '业务组2'
+          }, {
+            value: '选项3',
+            label: '业务组3'
+          }, {
+            value: '选项4',
+            label: '业务组4'
+          },],
         multipleSelection: [],
+
         editInfoDescription:'',
         editInfoName:'',
         editInfoAbbr:'',
-        editInfoOwner:'',
+        editInfoOwnerGroup:'',
 
-        newInfoOwner:'',
-        newInfoDescription:'',
-        newInfoName:'',
-        newInfoAbbr:'',
+        addInfoDescription:'',
+        addInfoName:'',
+        addInfoAbbr:'',
+        addInfoOwnerGroup:'',
+
+
+        newCardShowFlag:false,
+        editCardShowFlag: false,
       };
     },
     // computed:{
@@ -260,6 +266,7 @@
         this.multipleSelection = val;
       },
       handleNewInfoClick(){
+        this.newCardShowFlag = true;
         this.viewname = 'second';
         console.log(this.viewname);
       },
@@ -272,13 +279,34 @@
           alert("只能选择一个信息进行编辑!");
           return;
         }
+        this.editCardShowFlag = true;
         console.log(this.multipleSelection[0]);
         this.editInfoName = this.multipleSelection[0].name;
         this.editInfoAbbr = this.multipleSelection[0].abbr;
-        this.editInfoOwner = this.multipleSelection[0].owner;
+        this.editInfoOwnerGroup = this.multipleSelection[0].ownerGroup;
         this.editInfoDescription = this.multipleSelection[0].description;
         this.viewname = 'third';
-      }
+      },
+      handleNewSaveClick(){
+        this.newCardShowFlag = false;
+        this.viewname = "first";
+        return;
+      },
+      handleNewCancelClick(){
+         this.newCardShowFlag = false;
+        this.viewname = "first";
+        return;
+      },
+      handleEditSaveClick(){
+        this.editCardShowFlag = false;
+        this.viewname = "first";
+        return;
+      },
+      handleEditCancelClick(){
+        this.editCardShowFlag = false;
+        this.viewname = "first";
+        return;
+      },
     }
   };
 </script>

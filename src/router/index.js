@@ -8,27 +8,27 @@ const Layout = r => require.ensure([], () => r(require('../page/layout')), 'layo
 const Quick = r => require.ensure([], () => r(require('../page/quick/quick')), 'quick');
 
 // -------------------------------------------- 为用户新增代码 --------------------------------------------
-const seriesIndex = r => require.ensure([], () => r(require('../page/series/index.vue')), 'seriesIndex');
-const addSeries = r => require.ensure([], () => r(require('../page/series/addSeries.vue')), 'addSeries');
-const importSeries = r => require.ensure([], () => r(require('../page/series/importSeries.vue')), 'importSeries');
-const styleGroupIndex = r => require.ensure([], () => r(require('../page/styleGroup/index.vue')), 'styleGroupIndex');
-const addStyleGroup = r => require.ensure([], () => r(require('../page/styleGroup/addStyleGroup.vue')), 'addStyleGroup');
-const styleIndex = r => require.ensure([], () => r(require('../page/style/index.vue')), 'styleIndex');
-const addStyle = r => require.ensure([], () => r(require('../page/style/addStyle.vue')), 'addStyle');
-const bindStyleGroup = r => require.ensure([], () => r(require('../page/style/bindStyleGroup.vue')), 'bindStyleGroup');
-const importStyle = r => require.ensure([], () => r(require('../page/style/importStyle.vue')), 'importStyle');
-const customerPredictPlan = r => require.ensure([], () => r(require('../page/customerPredictPlan.vue')), 'customerPredictPlan');
-const planManagement = r => require.ensure([], () => r(require('../page/planManagement.vue')), 'planManagement');
-const planCompletionManage = r => require.ensure([], () => r(require('../page/planCompletionManage.vue')), 'planCompletionManage');
-const planMakeIndex = r => require.ensure([], () => r(require('../page/planMake/index.vue')), 'planMakeIndex');
-const seriesPlanMake = r => require.ensure([], () => r(require('../page/planMake/seriesPlanMake.vue')), 'seriesPlanMake');
-const styleGroupPlanMake  = r => require.ensure([], () => r(require('../page/planMake/styleGroupPlanMake .vue')), 'styleGroupPlanMake ');
-const stylePlanMake = r => require.ensure([], () => r(require('../page/planMake/stylePlanMake.vue')), 'stylePlanMake');
-const planVerify = r => require.ensure([], () => r(require('../page/planVerify.vue')), 'planVerify');
-const planDistribute = r => require.ensure([], () => r(require('../page/planDistribute.vue')), 'planDistribute');
-const planRecover = r => require.ensure([], () => r(require('../page/planRecover.vue')), 'planRecover');
+const seriesIndex = r => require.ensure([], () => r(require('../page/infoManagement/series/index.vue')), 'seriesIndex');
+const addSeries = r => require.ensure([], () => r(require('../page/infoManagement/series/addSeries.vue')), 'addSeries');
+const importSeries = r => require.ensure([], () => r(require('../page/infoManagement/series/importSeries.vue')), 'importSeries');
+const styleGroupIndex = r => require.ensure([], () => r(require('../page/infoManagement/styleGroup/index.vue')), 'styleGroupIndex');
+const addStyleGroup = r => require.ensure([], () => r(require('../page/infoManagement/styleGroup/addStyleGroup.vue')), 'addStyleGroup');
+const styleIndex = r => require.ensure([], () => r(require('../page/infoManagement/style/index.vue')), 'styleIndex');
+const addStyle = r => require.ensure([], () => r(require('../page/infoManagement/style/addStyle.vue')), 'addStyle');
+const bindStyleGroup = r => require.ensure([], () => r(require('../page/infoManagement/style/bindStyleGroup.vue')), 'bindStyleGroup');
+const importStyle = r => require.ensure([], () => r(require('../page/infoManagement/style/importStyle.vue')), 'importStyle');
+const customerPredictPlan = r => require.ensure([], () => r(require('../page/planManagement/customerPredictPlan.vue')), 'customerPredictPlan');
+const planManagement = r => require.ensure([], () => r(require('../page/planManagement/planManagement.vue')), 'planManagement');
+const planCompletionManage = r => require.ensure([], () => r(require('../page/planManagement/planCompletionManage.vue')), 'planCompletionManage');
+const planMakeIndex = r => require.ensure([], () => r(require('../page/planManagement/planMake.vue')), 'planMakeIndex');
+const seriesPlanMake = r => require.ensure([], () => r(require('../page/planManagement/seriesPlanMake.vue')), 'seriesPlanMake');
+const styleGroupPlanMake  = r => require.ensure([], () => r(require('../page/planManagement/styleGroupPlanMake .vue')), 'styleGroupPlanMake ');
+const stylePlanMake = r => require.ensure([], () => r(require('../page/planManagement/stylePlanMake.vue')), 'stylePlanMake');
+const planVerify = r => require.ensure([], () => r(require('../page/planManagement/planVerify.vue')), 'planVerify');
+const planDistribute = r => require.ensure([], () => r(require('../page/planManagement/planDistribute.vue')), 'planDistribute');
+const planRecover = r => require.ensure([], () => r(require('../page/planManagement/planRecover.vue')), 'planRecover');
 const messageManagement = r => require.ensure([], () => r(require('../page/messageManagement.vue')), 'messageManagement');
-const exceptionManagement = r => require.ensure([], () => r(require('../page/exceptionManagement.vue')), 'exceptionManagement');
+const exceptionManagement = r => require.ensure([], () => r(require('../page/planManagement/exceptionManagement.vue')), 'exceptionManagement');
 const queryStatistic = r => require.ensure([], () => r(require('../page/queryStatistic.vue')), 'queryStatistic');
 const formManagement = r => require.ensure([], () => r(require('../page/formManagement.vue')), 'formManagement');
 const bePlanModelEdit = r => require.ensure([], () => r(require('../page/backEndModule/planModelEdit.vue')), 'bePlanModelEdit');
@@ -37,10 +37,10 @@ const bePrivilegeManagement = r => require.ensure([], () => r(require('../page/b
 const beUserManagement = r => require.ensure([], () => r(require('../page/backEndModule/userData/userManagement.vue')), 'beUserManagement');
 const beGroupManagement = r => require.ensure([], () => r(require('../page/backEndModule/userData/groupManagement.vue')), 'beGroupManagement');
 const beRoleManagement = r => require.ensure([], () => r(require('../page/backEndModule/userData/roleManagement.vue')), 'beRoleManagement');
-const brandMana = r => require.ensure([], () => r(require('../page/backEndModule/dictionary/brandMana.vue')), 'brandMana');
-const customerMana = r => require.ensure([], () => r(require('../page/backEndModule/dictionary/customerMana.vue')), 'customerMana');
-const productMana = r => require.ensure([], () => r(require('../page/backEndModule/dictionary/productMana.vue')), 'productMana');
-const dictionaryCateMana = r => require.ensure([], () => r(require('../page/backEndModule/dictionary/dictionaryCateMana.vue')), 'dictionaryCateMana');
+const brandMana = r => require.ensure([], () => r(require('../page/backEndModule/brandMana.vue')), 'brandMana');
+const customerMana = r => require.ensure([], () => r(require('../page/backEndModule/customerMana.vue')), 'customerMana');
+const productMana = r => require.ensure([], () => r(require('../page/backEndModule/productMana.vue')), 'productMana');
+const dictionaryCateMana = r => require.ensure([], () => r(require('../page/backEndModule/dictionaryCateMana.vue')), 'dictionaryCateMana');
 
 // -------------------------------------------- 路由配置部分 --------------------------------------------
 export default [{

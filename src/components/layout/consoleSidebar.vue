@@ -194,7 +194,7 @@
           </template>
           <el-menu-item index="/backEndModule/userManagement"><i class="el-icon-document"></i>用户管理</el-menu-item>
           <el-menu-item index="/backEndModule/groupManagement"><i class="el-icon-document"></i>部门管理</el-menu-item>
-          <el-menu-item index="/backEndModule/privilegeManagement"><i class="el-icon-document"></i>角色管理</el-menu-item>
+          <el-menu-item index="/backEndModule/roleManagement"><i class="el-icon-document"></i>角色管理</el-menu-item>
         </el-submenu>
 
         <el-menu-item index="/quick">

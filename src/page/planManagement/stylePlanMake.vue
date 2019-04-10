@@ -1,9 +1,11 @@
 <template>
   <div class="body">
     <el-card class="box-card">
+      <!-- 标题 -->
        <el-row :gutter="20">
         <span class="Mtitle">款式计划制定</span>
       </el-row>
+       <!--表格 -->
       <el-row :gutter="20">
         <el-col :span="8">
           <div class="bar">
@@ -123,6 +125,8 @@
         </el-col>
       </el-row>
     </el-card>
+
+     <!-- 搜索结果 -->
     <el-card class="box-card">
       <el-table :data="tableData" style="width: 100%; margin-top: 20px">
         <el-table-column prop="Id" label="序号" align="center"></el-table-column>
@@ -140,7 +144,7 @@
         <el-table-column fixed="right" label="操作" width="200">
           <template slot-scope="scope">
             <el-button
-              @click.native.prevent="deleteRow(scope.$index, tableData)"
+              @click="ToPlanForm(scope.row)"
               type="text"
               size="small"
             >制定计划</el-button>
@@ -304,13 +308,24 @@ export default {
       }
     };
   },
+  methods:{
+    ToPlanForm(row){
+      this.$router.push({name:'planMakeIndex', 
+      params:{flag: 1, 
+      client:row.ClientName,
+      brand:row.BrandName,
+      series:row.SeriesName,
+      plantype:3,
+      planobj: row.OrderId}});
+    }
+  }
 };
 </script>
 
 <style lang="less" scoped>
 .Mtitle {
   align-content: center;
-  margin-left: 45%;
+  margin-left: 43%;
   font-size: 2ch;
 }
 .box-card {

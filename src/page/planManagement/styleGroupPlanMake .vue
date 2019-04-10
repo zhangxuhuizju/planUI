@@ -2,6 +2,9 @@
   <div class="body">
     <!-- 搜索条件设置 -->
     <el-card class="box-card">
+        <el-row :gutter="20">
+        <span class="Mtitle">款式组计划制定</span>
+      </el-row>
       <el-row :gutter="20">
         <el-col :span="8">
           <div class="bar">
@@ -31,7 +34,7 @@
         </el-col>
         <el-col :span="8">
           <div class="bar">
-            <div class="title">服装类型</div>
+            <div class="title">服装层次</div>
             <el-select v-model="ClothesType" clearable placeholder="请选择">
               <el-option
                 v-for="item in type"
@@ -139,7 +142,7 @@
               size="small"
             >引用系列计划</el-button>
             <el-button
-              @click.native.prevent="deleteRow(scope.$index, tableData)"
+              @click="ToPlanForm(scope.row)"
               type="text"
               size="small"
             >制定计划</el-button>
@@ -254,7 +257,7 @@ export default {
          Id:0,
           SeriesGroupId:"X1-0000",
           SeriesGroupName:"款式组A",
-          OrderId:"00000001",
+
           SeriesId:"001",
           ClientName:"客户A",
           BrandName:"品牌A",
@@ -269,10 +272,26 @@ export default {
       ],
     };
   },
+  methods:{
+     ToPlanForm(row){
+      this.$router.push({name:'planMakeIndex', 
+      params:{flag: 1, 
+      client:row.ClientName,
+      brand:row.BrandName,
+      series:row.SeriesName,
+      plantype:2,
+      planobj: row.StyleGroupName}});
+    }
+  }
 };
 </script>
 
 <style lang="less" scoped>
+.Mtitle {
+  align-content: center;
+  margin-left: 42%;
+  font-size: 2ch;
+}
 .box-card {
   margin: 20px 50px;
   padding: 0 20px;

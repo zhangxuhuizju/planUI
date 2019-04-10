@@ -50,7 +50,7 @@
         <el-col :span="8">
           <div class="bar">
             <div class="title">客户</div>
-            <el-select v-if='showit' v-model="form.client" clearable placeholder="请选择">
+            <el-select v-if="showit1" v-model="form.client" clearable placeholder="请选择">
               <el-option
                 v-for="item in client"
                 :key="item.value"
@@ -58,13 +58,20 @@
                 :value="item.value"
               ></el-option>
             </el-select>
-             <el-input  v-else v-model="form.client" clearable :rows="1" placeholder="请选择" :disabled="true"></el-input>
+            <el-input
+              v-else
+              v-model="form.client"
+              clearable
+              :rows="1"
+              placeholder="请选择"
+              :disabled="true"
+            ></el-input>
           </div>
         </el-col>
         <el-col :span="8">
           <div class="bar">
             <div class="title">品牌</div>
-            <el-select v-if='showit' v-model="form.brand" clearable placeholder="请选择">
+            <el-select v-if="showit2" v-model="form.brand" clearable placeholder="请选择">
               <el-option
                 v-for="item in brand"
                 :key="item.value"
@@ -72,13 +79,20 @@
                 :value="item.value"
               ></el-option>
             </el-select>
-            <el-input  v-else v-model="form.brand" clearable :rows="1" placeholder="请选择" :disabled="true"></el-input>
+            <el-input
+              v-else
+              v-model="form.brand"
+              clearable
+              :rows="1"
+              placeholder="请选择"
+              :disabled="true"
+            ></el-input>
           </div>
         </el-col>
         <el-col :span="8">
           <div class="bar">
             <div class="title">系列</div>
-            <el-select v-if="showit" v-model="form.series" clearable placeholder="请选择">
+            <el-select v-if="showit3" v-model="form.series" clearable placeholder="请选择">
               <el-option
                 v-for="item in series"
                 :key="item.value"
@@ -86,7 +100,7 @@
                 :value="item.value"
               ></el-option>
             </el-select>
-            <el-input  v-else v-model="form.series"  :rows="1" placeholder="请选择" :disabled="true"></el-input>
+            <el-input v-else v-model="form.series" :rows="1" placeholder="请选择" :disabled="true"></el-input>
           </div>
         </el-col>
       </el-row>
@@ -94,7 +108,7 @@
         <el-col :span="8">
           <div class="bar">
             <div class="title">计划类型</div>
-            <el-select v-model="form.Plantype" clearable placeholder="请选择">
+            <el-select v-if="showit4" v-model="form.Plantype" clearable placeholder="请选择">
               <el-option
                 v-for="item in Plantype"
                 :key="item.value"
@@ -102,12 +116,13 @@
                 :value="item.value"
               ></el-option>
             </el-select>
+            <el-input v-else v-model="form.Plantype" :rows="1" placeholder="请选择" :disabled="true"></el-input>
           </div>
         </el-col>
         <el-col :span="8">
           <div class="bar">
             <div class="title">计划对象</div>
-            <el-select v-model="form.obj" clearable placeholder="请选择">
+            <el-select v-if="showit4" v-model="form.obj" clearable placeholder="请选择">
               <el-option
                 v-for="item in obj"
                 :key="item.value"
@@ -115,6 +130,7 @@
                 :value="item.value"
               ></el-option>
             </el-select>
+            <el-input v-else v-model="form.obj" :rows="1" placeholder="请选择" :disabled="true"></el-input>
           </div>
         </el-col>
         <el-col :span="6">
@@ -152,8 +168,8 @@
         <el-col :span="5">
           <div class="bar" style="margin-left: 15px">
             <div class="title">产品日期</div>
-            <el-select v-model="form.datemodel" clearable placeholder="请选择" >
-              <el-option 
+            <el-select v-model="form.datemodel" clearable placeholder="请选择">
+              <el-option
                 v-for="item in datemodel"
                 :key="item.value"
                 :label="item.label"
@@ -204,37 +220,55 @@
           <div class="bar">
             <div class="title">计划建议</div>
 
-            <el-input type="textarea" :rows="4" placeholder="请输入内容" v-model="PlanPropose" style="margin-left: 26px" ></el-input>
-          </div>
-        </el-col>
-      </el-row>
-       <el-row :gutter="20">
-        <el-col :span="20">
-          <div class="bar">
-            <div class="title">计划描述</div>
-
-            <el-input type="textarea" :rows="4" placeholder="请输入内容" v-model="PlanDiscribe" style="margin-left: 26px" ></el-input>
-          </div>
-        </el-col>
-      </el-row>
-       <el-row :gutter="20">
-        <el-col :span="20">
-          <div class="bar">
-            <div class="title">计划备注</div>
-
-            <el-input type="textarea" :rows="4" placeholder="请输入内容" v-model="PlanRemark" style="margin-left: 26px" ></el-input>
+            <el-input
+              type="textarea"
+              :rows="4"
+              placeholder="请输入内容"
+              v-model="PlanPropose"
+              style="margin-left: 26px"
+            ></el-input>
           </div>
         </el-col>
       </el-row>
       <el-row :gutter="20">
         <el-col :span="20">
-          <div class="Mbutton" >
-          <el-col :span="8">
-            <el-button type="primary" @click="TestConfiemClick()">保存</el-button>
-          </el-col>
-          <el-col :span="8">
-            <el-button type="primary" @click="handleClick()">取消</el-button>
-          </el-col>
+          <div class="bar">
+            <div class="title">计划描述</div>
+
+            <el-input
+              type="textarea"
+              :rows="4"
+              placeholder="请输入内容"
+              v-model="PlanDiscribe"
+              style="margin-left: 26px"
+            ></el-input>
+          </div>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20">
+        <el-col :span="20">
+          <div class="bar">
+            <div class="title">计划备注</div>
+
+            <el-input
+              type="textarea"
+              :rows="4"
+              placeholder="请输入内容"
+              v-model="PlanRemark"
+              style="margin-left: 26px"
+            ></el-input>
+          </div>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20">
+        <el-col :span="20">
+          <div class="Mbutton">
+            <el-col :span="8">
+              <el-button type="primary" @click="TestConfiemClick()">保存</el-button>
+            </el-col>
+            <el-col :span="8">
+              <el-button type="primary" @click="handleClick()">取消</el-button>
+            </el-col>
           </div>
         </el-col>
       </el-row>
@@ -246,9 +280,13 @@
 export default {
   data() {
     return {
-      showit:false,
-      PlanRemark:"",
-      PlanDiscribe:"",
+      showit1: true,
+      showit2: true,
+      showit3: true,
+      showit4: true,
+      showit5: true,
+      PlanRemark: "",
+      PlanDiscribe: "",
       PlanPropose: "",
       ProjectType: "",
       PlanProduct: "",
@@ -409,32 +447,48 @@ export default {
           label: "系列C",
           value: 2
         }
-      ],
-    }
-
+      ]
+    };
   },
   mounted() {
     this.init();
   },
-
-  methods:{
-    init(){
-      this.id = this.$route.params.id;
-      this.editable = this.$route.params.edit;
-      if (this.id !== undefined) {
-        let allParam = this.$route.params;
-        this.form.brand = allParam.form.brand;
-        this.form.client = allParam.form.client;
-        this.form.series = allParam.form.series;
-      };
+  //五个参数控制
+  //所有的计划制定的跳转
+  methods: {
+    init() {
+      // console.log(this.$route.params);
+      let data = this.$route.params;
+      this.form.client = data.client;
+      this.form.brand=data.brand;
+      this.form.series=data.series;
+      
+      this.form.obj=data.planobj;
+      switch(data.plantype){
+        case 1:this.form.Plantype="系列计划";break;
+        case 2:this.form.Plantype="款式组计划";break;
+        case 3:this.form.Plantype="款式计划";break;
+      }
+      switch (data.flag) {
+        case 1: {
+          this.showit1 = false;
+          this.showit2 = false;
+          this.showit3 = false;
+          this.showit4 = false;
+          this.showit5 = false;
+          break;
+        }
+        default:
+          break;
+      }
     }
   }
 };
 </script>
 
 <style lang="less" scoped>
-.Mbutton{
-    margin-left: 45%;
+.Mbutton {
+  margin-left: 45%;
 }
 .Mtitle {
   align-content: center;

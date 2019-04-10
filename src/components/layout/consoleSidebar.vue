@@ -90,13 +90,14 @@
         <el-menu-item index="/series/addSeries"><i class="el-icon-document"></i>添加系列</el-menu-item>
         <el-menu-item index="/series/importSeries"><i class="el-icon-document"></i>导入系列</el-menu-item>
         
+        <el-menu-item index="/styleGroup/index"><i class="el-icon-document"></i>款式组管理</el-menu-item>
+        <el-menu-item index="/styleGroup/addStyleGroup"><i class="el-icon-document"></i>添加款式组</el-menu-item>
+
         <el-menu-item index="/style/index"><i class="el-icon-document"></i>款式管理</el-menu-item>
         <el-menu-item index="/style/addStyle"><i class="el-icon-document"></i>添加款式信息</el-menu-item>
         <el-menu-item index="/style/importStyle"><i class="el-icon-document"></i>导入款式</el-menu-item>
         <el-menu-item index="/style/bindStyleGroup"><i class="el-icon-document"></i>绑定款式组</el-menu-item>
 
-        <el-menu-item index="/styleGroup/index"><i class="el-icon-document"></i>款式组管理</el-menu-item>
-        <el-menu-item index="/styleGroup/addStyleGroup"><i class="el-icon-document"></i>添加款式组</el-menu-item>
       </el-submenu>
 
       <el-submenu index="planMake">
@@ -110,7 +111,7 @@
         <el-menu-item index="/planCompletionManage"><i class="el-icon-message"></i>计划完成管理</el-menu-item>
         <el-menu-item index="/planMake/planMakeIndex"><i class="el-icon-document"></i>计划制定</el-menu-item>
         <el-menu-item index="/planMake/seriesPlanMake"><i class="el-icon-document"></i>系列计划制定</el-menu-item>
-        <el-menu-item index="/planMake/styleGroupPlanMake"><i class="el-icon-document"></i>款数组计划制定</el-menu-item>
+        <el-menu-item index="/planMake/styleGroupPlanMake"><i class="el-icon-document"></i>款式组计划制定</el-menu-item>
         <el-menu-item index="/planMake/stylePlanMake"><i class="el-icon-document"></i>款式计划制定</el-menu-item>
         <el-menu-item index="/planVerify"><i class="el-icon-message"></i>计划审核管理</el-menu-item>
         <el-menu-item index="/planDistribute"><i class="el-icon-message"></i>计划下发管理</el-menu-item>

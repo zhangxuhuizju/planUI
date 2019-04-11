@@ -320,7 +320,7 @@ export default {
       const that = this;
       console.log('添加款号按钮点击');
       that.$router.push({
-        path: `/PlanService/StyleInfo`,
+        path: `/style/addStyle`,
         query: {
           ifStyleAdd: true,
         }
@@ -331,7 +331,7 @@ export default {
       const that = this;
       console.log("批量导入按钮点击");
       that.$router.push({
-        path: `/PlanService/StyleImport`,
+        path: `/style/importStyle`,
       });
     },
     // 删除款号
@@ -388,7 +388,7 @@ export default {
       }
       else if(that.multipleSelection.length >= 1){
         that.$router.push({
-          path: `/PlanService/StyleBindStyleGroup`,
+          path: `/style/bindStyleGroup`,
           query: {
             bindData: that.multipleSelection,
           }
@@ -400,7 +400,7 @@ export default {
       const that = this;
       console.log("点击了本行的修改");
       that.$router.push({
-        path: `/PlanService/StyleInfo`,
+        path: `/style/addStyle`,
         query: {
           ifStyleChange: true,
           customerName: row.customerName,

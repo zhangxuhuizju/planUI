@@ -249,7 +249,7 @@ export default {
       const that = this;
       console.log("取消按钮点击");
       that.$router.push({
-        path: `/PlanService/RangeManagement`,
+        path: `/series/index`,
       });
     },
     // 浏览按钮点击

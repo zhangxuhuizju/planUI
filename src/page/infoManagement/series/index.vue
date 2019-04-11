@@ -284,7 +284,7 @@ export default {
       const that = this;
       console.log("添加系列按钮点击");
       that.$router.push({
-        path: `/PlanService/RangeInfo`,
+        path: `/series/addSeries`,
         query: {
           ifRangeAdd: true,
         }
@@ -295,7 +295,7 @@ export default {
       const that = this;
       console.log("批量导入按钮点击");
       that.$router.push({
-        path: `/PlanService/RangeImport`,
+        path: `/series/importSeries`,
       });
     },
     // 删除系列
@@ -345,7 +345,7 @@ export default {
       const that = this;
       console.log("点击了本行的修改");
       that.$router.push({
-        path: `/PlanService/RangeInfo`,
+        path: `/series/addSeries`,
         query: {
           ifRangeChange: true,
           customerName: row.customerName,

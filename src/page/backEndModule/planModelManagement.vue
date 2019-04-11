@@ -48,15 +48,11 @@
           <div class="grid-content bg-purple inputCombineDiv">
             <span class="inputTag">添加时间：</span>
             <el-date-picker
-              v-model="value1"
-              type="date"
-              placeholder="选择日期">
-            </el-date-picker>
-            <span class="inputTag1">至</span>
-            <el-date-picker
-              v-model="value1"
-              type="date"
-              placeholder="选择日期">
+              v-model="value6"
+              type="daterange"
+              range-separator="至"
+              start-placeholder="开始日期"
+              end-placeholder="结束日期">
             </el-date-picker>
           </div>
         </el-col>

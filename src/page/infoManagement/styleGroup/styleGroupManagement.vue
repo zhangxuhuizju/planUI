@@ -295,7 +295,7 @@ export default {
       const that = this;
       console.log('添加款式组按钮点击');
       that.$router.push({
-        path: `/styleGroup/addStyleGroup`,
+        path: `/styleGroup/styleGroupInfo`,
         query: {
           ifStyleGroupAdd: true,
         }
@@ -379,7 +379,7 @@ export default {
       const that = this;
       console.log("点击了本行的修改");
       that.$router.push({
-        path: `/styleGroup/addStyleGroup`,
+        path: `/styleGroup/styleGroupInfo`,
         query: {
           ifStyleGroupChange: true,
           customerName: row.customerName,

@@ -200,7 +200,7 @@ export default {
       const that = this;
       console.log("取消按钮点击");
       that.$router.push({
-        path: `/style/index`,
+        path: `/style/styleManagement`,
       });
     }
   }

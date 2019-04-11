@@ -56,18 +56,11 @@
             </el-select>
           </div>
         </el-col>
-       </el-row> 
-      <el-row :gutter="20" style="margin-top: 30px; margin-bottom: 5px;">
-        <el-col :span="10">
+        <el-col :span="8">
           <div class="inputBox">
-            <div class="label">文件路径</div>
-            <el-input v-model="data.filePath"></el-input>
+            <div class="label">订单款号</div>
+            <el-input v-model="data.styleNumber" clearable placeholder="请输入"></el-input>
           </div>
-        </el-col>
-        <el-col :span="2">
-          <el-button type="primary" @click="findFile">浏览
-            <i class="el-icon-upload el-icon--right"></i>
-          </el-button>
         </el-col>
       </el-row>
       <el-row style="margin: 50px 0 10px 0">
@@ -90,7 +83,8 @@ export default {
         customerName: "",
         brandName: "",
         clothingType: "",
-        filePath: "",
+        rangeName: "",
+        styleNumber: "",
       },
       options: {
         customerNameOptions: [
@@ -142,35 +136,53 @@ export default {
           },
         ],
       },
+      controlData: {
+        ifStyleAdd: false,
+        ifStyleChange: false,
+      },
     };
   },
   created: function () {
     const that = this;
-    console.log("进入导入款式页面");
+    console.log("进入款式信息页面");
+    var result = {};
+    result = that.$route.query;
+    if (result.hasOwnProperty("ifStyleAdd")){
+      that.controlData.ifStyleAdd = result["ifStyleAdd"];
+      console.log("当面页面用于添加款号");
+    }
+    if (result.hasOwnProperty("ifStyleChange")){
+      that.controlData.ifStyleChange = result["ifStyleChange"];
+      console.log("当面页面用于修改款式");
+      that.data = result;
+    }
   },
   methods: {
     // 保存按钮点击
     store(){
       const that = this;
       console.log("保存按钮点击");
-      this.$message({
-        message: '成功导入款式信息',
-        type: 'success'
-      });
+      if(that.controlData.ifStyleAdd === true){
+          this.$message({
+          message: '成功新增款式信息',
+          type: 'success'
+        });
+      }
+      if(that.controlData.ifStyleChange === true){
+          this.$message({
+          message: '成功修改款式信息',
+          type: 'success'
+        });
+      }
     },
     // 取消按钮点击
     cancel(){
       const that = this;
       console.log("取消按钮点击");
       that.$router.push({
-        path: `/style/index`,
+        path: `/style/styleManagement`,
       });
-    },
-    // 浏览按钮点击
-    findFile(){
-      const that = this;
-      console.log("浏览按钮点击");
-    },
+    }
   }
 }
 </script>

@@ -44,24 +44,11 @@
         <el-col :span="6">
           <div class="bar">
             <div class="title">系列名称</div>
-              <el-select v-model="searchOptions.searchParams.rangeName" >
-              <el-option
-                v-for="item in searchOptions.options.rangeNameOptions"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
-            </el-select>
+              <el-input v-model=searchOptions.searchParams.rangeName placeholder="请输入系列名称"></el-input>
           </div>
         </el-col>
       </el-row>
       <el-row :gutter="20" style="margin-top: 30px; margin-bottom: 5px;">
-        <el-col :span="6">
-          <div class="bar">
-            <div class="title">订单款号</div>
-              <el-input v-model=searchOptions.searchParams.styleNumber placeholder="请输入订单款号"></el-input>
-          </div>
-        </el-col>
         <el-col :span="12">
           <div class="bar">
             <div class="title">添加时间</div>
@@ -83,17 +70,14 @@
     <el-card class="box-card">
       <div class="table">
         <el-row :gutter="10">
-          <el-col :span="4">
-            <el-button type="primary" @click="addStyle">添加款号</el-button>
+          <el-col :span="3">
+            <el-button type="primary" @click="addRange">添加系列</el-button>
           </el-col>
-          <el-col :span="4">
-            <el-button type="primary" @click="importStyle">批量导入</el-button>
+          <el-col :span="3">
+            <el-button type="primary" @click="importRange">批量导入</el-button>
           </el-col>
-          <el-col :span="4">
-            <el-button type="primary" @click="deleteStyle">删除款号</el-button>
-          </el-col>
-          <el-col :span="4">
-            <el-button type="primary" @click="bindStyleGroup">绑定款式组</el-button>
+          <el-col :span="3">
+            <el-button type="primary" @click="deleteRange">删除系列</el-button>
           </el-col>
         </el-row>
         <el-table
@@ -106,24 +90,21 @@
           style="width: 100%; margin-top: 20px">
           <el-table-column type="selection" width="50" align="center"></el-table-column>
           <el-table-column prop="index" label="序号" width="50" align="center"></el-table-column>
-          <el-table-column prop="styleGroupNumber" width="150" label="款式组编号" align="center"></el-table-column>
-          <el-table-column prop="styleGroupName" width="130" label="款式组名称" align="center"></el-table-column>
-          <el-table-column prop="styleNumber" width="150" label="订单款号" align="center"></el-table-column>
           <el-table-column prop="rangeNumber" width="130" label="系列编号" align="center"></el-table-column>
           <el-table-column prop="customerName" width="120" label="客户名称" align="center"></el-table-column>
           <el-table-column prop="brandName" label="品牌" align="center"></el-table-column>
           <el-table-column prop="clothingType" label="服装类型" align="center"></el-table-column>
-          <el-table-column prop="rangeName" width="150" label="系列名称" align="center"></el-table-column>
+          <el-table-column prop="rangeName" width="170" label="系列名称" align="center"></el-table-column>
           <el-table-column prop="addUser" label="添加人" align="center"></el-table-column>
           <el-table-column prop="dept" label="部门" align="center"></el-table-column>
           <el-table-column prop="addTime" width="170" label="添加时间" align="center"></el-table-column>
           <el-table-column prop="addMethod" label="添加方式" align="center"></el-table-column>
-          <el-table-column prop="styleStatus" label="状态" align="center"></el-table-column>
+          <el-table-column prop="rangeStatus" label="状态" align="center"></el-table-column>
           <el-table-column label="操作" width="150" min-width="100" align="center">
             <template slot-scope="scope">
-              <el-button @click="getStyleData(scope.row)" type="text" size="small">查看</el-button>
-              <el-button @click="changeStyleData(scope.row)" type="text" size="small">修改</el-button>
-              <el-button @click="deleteStyleData(scope.row)" type="text" size="small">删除</el-button>
+              <el-button @click="getRangeData(scope.row)" type="text" size="small">查看</el-button>
+              <el-button @click="changeRangeData(scope.row)" type="text" size="small">修改</el-button>
+              <el-button @click="deleteRangeData(scope.row)" type="text" size="small">删除</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -160,7 +141,6 @@ export default {
           brandName: "",
           clothingType: "",
           rangeName: "",
-          styleNumber: "",
           dateRange: "", 
         },
         options: {
@@ -198,29 +178,12 @@ export default {
               label: "品牌"
             },
           ],
-          rangeNameOptions: [
-            {
-              value: 1,
-              label: "Fall-2019(07/08/09)"
-            },
-            {
-              value: 2,
-              label: "Spring-2019(01/02/03)"
-            },
-            {
-              value: 3,
-              label: "Winter-2019(10/11/12)"
-            },
-          ],
         }
       },
       data:{
         tableData:[
           {
             index: 1,
-            styleGroupNumber: "KSZ20190101001",
-            styleGroupName: "款式1组",
-            styleNumber: "10190114(CX1901)",
             rangeNumber: "XL20190101001",
             customerName: "Qi-Collection",
             brandName: "Selkie",
@@ -229,24 +192,25 @@ export default {
             addUser: "刘德华",
             dept: "业务1组",
             addTime: "2019-01-01 10:15:01",
-            addMethod: "导入",
-            styleStatus: "已绑定",
+            addMethod: "手动",
+            rangeStatus: "已绑定",
+            rangeAmount: "15",
+            rangeNote: "系列备注1",
           },
           {
-            index: 1,
-            styleGroupNumber: "KSZ20190101001",
-            styleGroupName: "款式1组",
-            styleNumber: "10190114(CX1902)",
-            rangeNumber: "XL20190101001",
-            customerName: "Qi-Collection",
-            brandName: "Selkie",
+            index: 2,
+            rangeNumber: "XL20181001002",
+            customerName: "A客户",
+            brandName: "AAA品牌",
             clothingType: "时装",
-            rangeName: "Fall-2019(07/08/09)",
-            addUser: "刘德华",
+            rangeName: "Spring-2019(01/02/03)",
+            addUser: "精品",
             dept: "业务1组",
-            addTime: "2019-01-01 10:15:01",
+            addTime: "2018-10-01 09:25:01",
             addMethod: "导入",
-            styleStatus: "已绑定",
+            rangeStatus: "已绑定",
+            rangeAmount: "10",
+            rangeNote: "系列备注2",
           },
         ]
       },
@@ -255,7 +219,7 @@ export default {
   },
   created: function () {
     const that = this;
-    console.log('进入款式管理页面');
+    console.log("进入系列管理页面");
   },
   methods: {
     // 改变日期格式
@@ -279,6 +243,14 @@ export default {
     // 当前页码改变时触发函数
     handleCurrentChange(val) {
       console.log(`当前页: ${val}`);
+    },
+    // 选择框改变监控
+    changeCheckBoxFun(val){
+      const that = this;
+      that.multipleSelection = val;
+      console.log("changeCheckBox所选中的内容如下");
+      console.log(that.multipleSelection);
+      console.log("changeCheckBox所选中的内容的长度为",that.multipleSelection.length);
     },
     // 搜集搜索条件
     collectSearchOptions(){ 
@@ -304,49 +276,41 @@ export default {
     // 搜索按钮点击
     handleSearch(){
       const that = this;
-      console.log('搜索按钮点击');
+      console.log("搜索按钮点击");
       let searchConditionParams = that.collectSearchOptions();
     },
-    // 选择框改变监控
-    changeCheckBoxFun(val){
+    // 添加系列
+    addRange(){
       const that = this;
-      that.multipleSelection = val;
-      console.log("changeCheckBox所选中的内容如下");
-      console.log(that.multipleSelection);
-      console.log("changeCheckBox所选中的内容的长度为",that.multipleSelection.length);
-    },
-    // 添加款号
-    addStyle(){
-      const that = this;
-      console.log('添加款号按钮点击');
+      console.log("添加系列按钮点击");
       that.$router.push({
-        path: `/style/addStyle`,
+        path: `/range/rangeInfo`,
         query: {
-          ifStyleAdd: true,
+          ifRangeAdd: true,
         }
       });
     },
-    // 导入款号
-    importStyle(){
+    // 批量导入
+    importRange(){
       const that = this;
       console.log("批量导入按钮点击");
       that.$router.push({
-        path: `/style/importStyle`,
+        path: `/range/rangeImport`,
       });
     },
-    // 删除款号
-    deleteStyle(){
+    // 删除系列
+    deleteRange(){
       const that = this;
-      console.log('删除款号按钮点击');
+      console.log("删除系列按钮点击");
       if(that.multipleSelection.length ===0){
         this.$message({
-          message: '请选择要删除的款号',
+          message: '请选择要删除的系列数据',
           type: 'warning'
         });
       }
       else if(that.multipleSelection.length >= 1){
         console.log("有" + that.multipleSelection.length + "条数据被选中");
-        this.$confirm("删除所选的" + that.multipleSelection.length + "条款式组信息, 是否继续?", "提示", {
+        this.$confirm("删除所选的" + that.multipleSelection.length + "条系列信息, 是否继续?", "提示", {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
           type: 'warning'
@@ -376,48 +340,30 @@ export default {
         });
       }
     },
-    // 绑定款式组
-    bindStyleGroup(){
-      const that = this;
-      console.log('绑定款式组按钮点击');
-      if(that.multipleSelection.length ===0){
-        this.$message({
-          message: '请选择要绑定款式组的款号',
-          type: 'warning'
-        });
-      }
-      else if(that.multipleSelection.length >= 1){
-        that.$router.push({
-          path: `/style/bindStyleGroup`,
-          query: {
-            bindData: that.multipleSelection,
-          }
-        });
-      }
-    },
     // 表格中的修改
-    changeStyleData(row){
+    changeRangeData(row){
       const that = this;
       console.log("点击了本行的修改");
       that.$router.push({
-        path: `/style/addStyle`,
+        path: `/range/rangeInfo`,
         query: {
-          ifStyleChange: true,
+          ifRangeChange: true,
           customerName: row.customerName,
           brandName: row.brandName,
           clothingType: row.clothingType,
           rangeName: row.rangeName,
-          styleNumber: row.styleNumber,
+          rangeAmount: row.rangeAmount,
+          rangeNote: row.rangeNote,
         }
       });
     },
     // 表格中的删除
-    deleteStyleData(row){
+    deleteRangeData(row){
       const that = this;
       console.log("点击了本行的删除");
       console.log("当前row=", row);
       var thisIndex = row.index;
-      this.$confirm("是否确认删除该款号？", "提示", {
+      this.$confirm("是否确认删除该系列？", "提示", {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
@@ -440,7 +386,7 @@ export default {
           message: '已取消删除'
         });          
       });
-    }
+    },
   }
 }
 </script>

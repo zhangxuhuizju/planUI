@@ -8,15 +8,21 @@ const Layout = r => require.ensure([], () => r(require('../page/layout')), 'layo
 const Quick = r => require.ensure([], () => r(require('../page/quick/quick')), 'quick');
 
 // -------------------------------------------- 为用户新增代码 --------------------------------------------
-const seriesIndex = r => require.ensure([], () => r(require('../page/infoManagement/series/index.vue')), 'seriesIndex');
-const addSeries = r => require.ensure([], () => r(require('../page/infoManagement/series/addSeries.vue')), 'addSeries');
-const importSeries = r => require.ensure([], () => r(require('../page/infoManagement/series/importSeries.vue')), 'importSeries');
-const styleGroupIndex = r => require.ensure([], () => r(require('../page/infoManagement/styleGroup/index.vue')), 'styleGroupIndex');
-const addStyleGroup = r => require.ensure([], () => r(require('../page/infoManagement/styleGroup/addStyleGroup.vue')), 'addStyleGroup');
-const styleIndex = r => require.ensure([], () => r(require('../page/infoManagement/style/index.vue')), 'styleIndex');
-const addStyle = r => require.ensure([], () => r(require('../page/infoManagement/style/addStyle.vue')), 'addStyle');
+// 系列管理
+const rangeManagement = r => require.ensure([], () => r(require('../page/infoManagement/range/rangeManagement.vue')), 'rangeManagement');
+const rangeInfo = r => require.ensure([], () => r(require('../page/infoManagement/range/rangeInfo.vue')), 'rangeInfo');
+const rangeImport = r => require.ensure([], () => r(require('../page/infoManagement/range/rangeImport.vue')), 'rangeImport');
+
+// 款式组管理
+const styleGroupManagement = r => require.ensure([], () => r(require('../page/infoManagement/styleGroup/styleGroupManagement.vue')), 'styleGroupManagement');
+const styleGroupInfo = r => require.ensure([], () => r(require('../page/infoManagement/styleGroup/styleGroupInfo.vue')), 'styleGroupInfo');
+
+// 款式管理
+const styleManagement = r => require.ensure([], () => r(require('../page/infoManagement/style/styleManagement.vue')), 'styleManagement');
+const styleInfo = r => require.ensure([], () => r(require('../page/infoManagement/style/styleInfo.vue')), 'styleInfo');
 const bindStyleGroup = r => require.ensure([], () => r(require('../page/infoManagement/style/bindStyleGroup.vue')), 'bindStyleGroup');
-const importStyle = r => require.ensure([], () => r(require('../page/infoManagement/style/importStyle.vue')), 'importStyle');
+const styleImport = r => require.ensure([], () => r(require('../page/infoManagement/style/styleImport.vue')), 'styleImport');
+
 const customerPredictPlan = r => require.ensure([], () => r(require('../page/planManagement/customerPredictPlan.vue')), 'customerPredictPlan');
 const planManagement = r => require.ensure([], () => r(require('../page/planManagement/planManagement.vue')), 'planManagement');
 const planCompletionManage = r => require.ensure([], () => r(require('../page/planManagement/planCompletionManage.vue')), 'planCompletionManage');
@@ -94,59 +100,59 @@ export default [{
         }
       },
       { 
-        path: '/series/index',
-        name: 'seriesIndex',
-        component: seriesIndex,
+        path: '/range/rangeManagement',
+        name: 'rangeManagement',
+        component: rangeManagement,
         meta: {
           bcrumd: ['系列管理'],
         }
       },
       { 
-        path: '/series/addSeries',
-        name: 'addSeries',
-        component: addSeries,
+        path: '/range/rangeInfo',
+        name: 'rangeInfo',
+        component: rangeInfo,
         meta: {
-          bcrumd: ['系列管理', '添加系列'],
+          bcrumd: ['系列管理', '系列信息'],
         }
       },
       { 
-        path: '/series/importSeries',
-        name: 'importSeries',
-        component: importSeries,
+        path: '/range/rangeImport',
+        name: 'rangeImport',
+        component: rangeImport,
         meta: {
           bcrumd: ['系列管理', '导入系列'],
         }
       },
       { 
-        path: '/styleGroup/index',
-        name: 'styleGroupIndex',
-        component: styleGroupIndex,
+        path: '/styleGroup/styleGroupManagement',
+        name: 'styleGroupManagement',
+        component: styleGroupManagement,
         meta: {
           bcrumd: ['款式组管理'],
         }
       },
       { 
-        path: '/styleGroup/addStyleGroup',
-        name: 'addStyleGroup',
-        component: addStyleGroup,
+        path: '/styleGroup/styleGroupInfo',
+        name: 'styleGroupInfo',
+        component: styleGroupInfo,
         meta: {
-          bcrumd: ['款式组管理', '添加款式组'],
+          bcrumd: ['款式组管理', '款式组信息'],
         }
       },
       { 
-        path: '/style/index',
-        name: 'styleIndex',
-        component: styleIndex,
+        path: '/style/styleManagement',
+        name: 'styleIstyleManagementndex',
+        component: styleManagement,
         meta: {
           bcrumd: ['款式管理'],
         }
       },
       { 
-        path: '/style/addStyle',
-        name: 'addStyle',
-        component: addStyle,
+        path: '/style/styleInfo',
+        name: 'styleInfo',
+        component: styleInfo,
         meta: {
-          bcrumd: ['款式管理', '添加款式信息'],
+          bcrumd: ['款式管理', '款式信息'],
         }
       },
       { 
@@ -158,9 +164,9 @@ export default [{
         }
       },
       { 
-        path: '/style/importStyle',
-        name: 'importStyle',
-        component: importStyle,
+        path: '/style/styleImport',
+        name: 'styleImport',
+        component: styleImport,
         meta: {
           bcrumd: ['款式管理', '绑定款式'],
         }

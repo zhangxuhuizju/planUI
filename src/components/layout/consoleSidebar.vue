@@ -86,16 +86,16 @@
           <i class="el-icon-message"></i>
           信息管理
         </template>
-        <el-menu-item index="/series/index"><i class="el-icon-document"></i>系列管理</el-menu-item>
-        <el-menu-item index="/series/addSeries"><i class="el-icon-document"></i>添加系列</el-menu-item>
-        <el-menu-item index="/series/importSeries"><i class="el-icon-document"></i>导入系列</el-menu-item>
+        <el-menu-item index="/range/rangeManagement"><i class="el-icon-document"></i>系列管理</el-menu-item>
+        <el-menu-item index="/range/rangeInfo"><i class="el-icon-document"></i>系列信息</el-menu-item>
+        <el-menu-item index="/range/rangeImport"><i class="el-icon-document"></i>导入系列</el-menu-item>
         
-        <el-menu-item index="/styleGroup/index"><i class="el-icon-document"></i>款式组管理</el-menu-item>
-        <el-menu-item index="/styleGroup/addStyleGroup"><i class="el-icon-document"></i>添加款式组</el-menu-item>
+        <el-menu-item index="/styleGroup/styleGroupManagement"><i class="el-icon-document"></i>款式组管理</el-menu-item>
+        <el-menu-item index="/styleGroup/styleGroupInfo"><i class="el-icon-document"></i>款式组信息</el-menu-item>
 
-        <el-menu-item index="/style/index"><i class="el-icon-document"></i>款式管理</el-menu-item>
-        <el-menu-item index="/style/addStyle"><i class="el-icon-document"></i>添加款式信息</el-menu-item>
-        <el-menu-item index="/style/importStyle"><i class="el-icon-document"></i>导入款式</el-menu-item>
+        <el-menu-item index="/style/styleManagement"><i class="el-icon-document"></i>款式管理</el-menu-item>
+        <el-menu-item index="/style/styleInfo"><i class="el-icon-document"></i>款式信息</el-menu-item>
+        <el-menu-item index="/style/styleImport"><i class="el-icon-document"></i>导入款式</el-menu-item>
         <el-menu-item index="/style/bindStyleGroup"><i class="el-icon-document"></i>绑定款式组</el-menu-item>
 
       </el-submenu>

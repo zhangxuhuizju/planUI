@@ -46,20 +46,21 @@
         <el-col :span="8">
           <div class="inputBox">
             <div class="label">系列名称</div>
-            <el-select v-model="data.rangeName" >
-              <el-option
-                v-for="item in options.rangeNameTypeOptions"
-                :key="item.value"
-                :label="item.label"
-                :value="item.value">
-              </el-option>
-            </el-select>
+            <el-input v-model="data.rangeName" clearable placeholder="请输入"></el-input>
           </div>
         </el-col>
         <el-col :span="8">
           <div class="inputBox">
-            <div class="label">款式组名</div>
-            <el-input v-model="data.styleGroupName" clearable placeholder="请输入"></el-input>
+            <div class="label">系列款数</div>
+            <el-input v-model="data.rangeAmount" clearable placeholder="请输入"></el-input>
+          </div>
+        </el-col>
+      </el-row>
+      <el-row :gutter="10" style="margin-top: 30px; margin-bottom: 5px;">
+        <el-col :span="24">
+          <div class="inputBox"> 
+            <div class="label">备注</div>
+            <el-input v-model="data.rangeNote" type="textarea" :rows="3" placeholder="请输入" ></el-input>
           </div>
         </el-col>
       </el-row>
@@ -84,7 +85,8 @@ export default {
         brandName: "",
         clothingType: "",
         rangeName: "",
-        styleGroupName: "",
+        rangeAmount: "",
+        rangeNote: "",
       },
       options: {
         customerNameOptions: [
@@ -121,39 +123,25 @@ export default {
             label: "品牌"
           },
         ],
-        rangeNameTypeOptions: [
-          {
-            value: 1,
-            label: "Fall-2019(07/08/09)"
-          },
-          {
-            value: 2,
-            label: "Spring-2019(01/02/03)"
-          },
-          {
-            value: 3,
-            label: "Winter-2019(10/11/12)"
-          },
-        ],
       },
       controlData: {
-        ifStyleGroupAdd: false,
-        ifStyleGroupChange: false,
+        ifRangeAdd: false,
+        ifRangeChange: false,
       },
     };
   },
   created: function () {
     const that = this;
-    console.log("进入款式组信息页面");
+    console.log("进入系列信息页面");
     var result = {};
     result = that.$route.query;
-    if (result.hasOwnProperty("ifStyleGroupAdd")){
-      that.controlData.ifStyleGroupAdd = result["ifStyleGroupAdd"];
-      console.log("当面页面用于添加款式组");
+    if (result.hasOwnProperty("ifRangeAdd")){
+      that.controlData.ifRangeAdd = result["ifRangeAdd"];
+      console.log("当面页面用于添加系列");
     }
-    if (result.hasOwnProperty("ifStyleGroupChange")){
-      that.controlData.ifStyleGroupChange = result["ifStyleGroupChange"];
-      console.log("当面页面用于修改款式组");
+    if (result.hasOwnProperty("ifRangeChange")){
+      that.controlData.ifRangeChange = result["ifRangeChange"];
+      console.log("当面页面用于修改系列");
       that.data = result;
     }
   },
@@ -162,15 +150,15 @@ export default {
     store(){
       const that = this;
       console.log("保存按钮点击");
-      if(that.controlData.ifStyleGroupAdd === true){
+      if(that.controlData.ifRangeAdd === true){
           this.$message({
-          message: '成功新增款式组信息',
+          message: '成功新增系列信息',
           type: 'success'
         });
       }
-      if(that.controlData.ifStyleGroupChange === true){
+      if(that.controlData.ifRangeChange === true){
           this.$message({
-          message: '成功修改款式组信息',
+          message: '成功修改系列信息',
           type: 'success'
         });
       }
@@ -180,7 +168,7 @@ export default {
       const that = this;
       console.log("取消按钮点击");
       that.$router.push({
-        path: `/styleGroup/index`,
+        path: `/range/rangeManagement`,
       });
     }
   }
